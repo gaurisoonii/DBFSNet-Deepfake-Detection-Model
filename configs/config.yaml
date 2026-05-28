@@ -1,0 +1,50 @@
+# DBFSNet Configuration
+# Base folder: C:\Users\sanid\Desktop\DBFS
+#
+# CHANGES:
+#   - Added balance_dataset: true  → WeightedRandomSampler in training   [NEW]
+#   - Added metrics_csv path       → per-epoch CSV saved during training  [NEW]
+
+data:
+  real_video_dir:  "C:/Users/sanid/Desktop/DBFS/data/original_sequences/youtube/c40/videos"
+  fake_video_dirs:
+    Deepfakes:      "C:/Users/sanid/Desktop/DBFS/data/manipulated_sequences/Deepfakes/c40/videos"
+    Face2Face:      "C:/Users/sanid/Desktop/DBFS/data/manipulated_sequences/Face2Face/c40/videos"
+    FaceSwap:       "C:/Users/sanid/Desktop/DBFS/data/manipulated_sequences/FaceSwap/c40/videos"
+    NeuralTextures: "C:/Users/sanid/Desktop/DBFS/data/manipulated_sequences/NeuralTextures/c40/videos"
+
+  extracted_faces_dir: "C:/Users/sanid/Desktop/DBFS/data/extracted_faces"
+
+  frames_per_video: 30
+  image_size: 224
+  train_split: 0.8
+  num_workers: 0                     # keep 0 on Windows
+
+  # [NEW] Set true to fix 84% fake / 16% real imbalance via WeightedRandomSampler
+  balance_dataset: true
+
+model:
+  spatial_backbone: "efficientnet_b4"
+  freq_backbone: "efficientnet_b0"
+  spatial_feat_dim: 1792
+  freq_feat_dim: 1280
+  freq_channels: 9
+  gate_hidden_dim: 512
+  dropout: 0.3
+
+training:
+  epochs: 30
+  batch_size: 16
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-4
+  lr_scheduler: "cosine"
+  warmup_epochs: 2
+  grad_clip: 1.0
+  seed: 42
+
+paths:
+  checkpoint_dir: "C:/Users/sanid/Desktop/DBFS/checkpoints"
+  output_dir:     "C:/Users/sanid/Desktop/DBFS/outputs"
+  log_dir:        "C:/Users/sanid/Desktop/DBFS/logs"
+  # [NEW] CSV file where train.py logs per-epoch metrics
+  metrics_csv:    "C:/Users/sanid/Desktop/DBFS/checkpoints/training_metrics.csv"

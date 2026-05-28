@@ -1,0 +1,48 @@
+﻿# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.env
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Logs and runtime files
+*.log
+*.pot
+*.sqlite3
+*.db
+.coverage
+coverage.xml
+htmlcov/
+
+# Pytest / static analysis
+.pytest_cache/
+.mypy_cache/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code workspace settings
+.vscode/
+
+# Large generated project artifacts
+data/
+outputs/
+checkpoints/
+logs/
